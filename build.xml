@@ -1,0 +1,38 @@
+<project name="HeyRunesTeleport" default="dist" basedir=".">
+	<!-- Change the following two properties to the correct jar files -->
+	<property name="minecraftserver.jar" location="../../minecraft_server.jar"/>
+	<property name="hmod.jar" location="../../Minecraft_Mod.jar"/>
+
+	<property name="plugins" location="../../plugins/"/>
+	
+	<property name="src" location="src"/>
+	<property name="bin" location="bin"/>
+	<property name="dist" location="dist"/>
+	
+	<target name="init">
+		<mkdir dir="${bin}"/>
+	</target>
+	
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${bin}" includeantruntime="false">
+			<classpath>
+				<pathelement location="${hmod.jar}"/>
+				<pathelement location="${minecraftserver.jar}"/>
+			</classpath>
+		</javac>
+	</target>
+	
+	<target name="dist" depends="compile">
+		<mkdir dir="${dist}"/>
+		<jar jarfile="${dist}/HeyRunesTeleport.jar" basedir="${bin}"/>
+	</target>
+	
+	<target name="deploy" depends="dist">
+		<copy file="${dist}/HeyRunesTeleport.jar" todir="${plugins}"/>
+	</target>
+	
+	<target name="clean">
+		<delete dir="${bin}"/>
+		<delete dir="${dist}"/>
+	</target>
+</project>
