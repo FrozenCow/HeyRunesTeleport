@@ -31,6 +31,16 @@
 		<copy file="${dist}/HeyRunesTeleport.jar" todir="${plugins}"/>
 	</target>
 	
+	<target name="release" depends="dist">
+		<delete file="HeyRunesTeleport.zip"/>
+		<zip destfile="HeyRunesTeleport.zip">
+			<zipfileset dir="." includes="README.md" fullpath="readme.txt"/>
+			<zipfileset dir="." includes="build.xml"/>
+			<zipfileset dir="${dist}" includes="*.jar"/>
+			<zipfileset dir="${src}" includes="*.java" prefix="src/"/>
+		</zip>
+	</target>
+	
 	<target name="clean">
 		<delete dir="${bin}"/>
 		<delete dir="${dist}"/>
