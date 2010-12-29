@@ -98,7 +98,8 @@ public class HeyRunesTeleport extends Plugin {
 		Sign s = (Sign)b;
 		String name = s.getText(0);
 
-		if (!isValidName(name)) {
+		if (name == "") return;
+		else if (!isValidName(name)) {
 			player.sendMessage("Invalid name!");
 			return;
 		}
@@ -117,7 +118,8 @@ public class HeyRunesTeleport extends Plugin {
 		Sign s = (Sign)b;
 		String name = s.getText(0);
 
-		if (!isValidName(name)) {
+		if (name == "") return;
+		else if (!isValidName(name)) {
 			player.sendMessage("Invalid name!");
 			return;
 		}
